@@ -1,22 +1,23 @@
 import pandas as pd
+import numpy as np
 from sklearn import linear_model
 
-data = pd.read_csv('NYC_Bicycle_Counts_2016_Corrected_2.csv')
-regression = linear_model.LinearRegression
+
+
+data = pd.read_csv('NYC_Bicycle_Counts_2016_Corrected_2.csv',thousands = ',')
+
+regression = linear_model.LinearRegression()
 High_temp = data['High Temp (°F)']
 Low_temp = data['Low Temp (°F)']
 pre = data['Precipitation']
-
-for i in range(len(pre)):                    
-    if pre[i] == 'T':
-        pre[i] = '0'
-    if pre[i][-3:] == "(S)":
-        pre[i] = pre[i][:-4]
+total = data['Total']
 
 
-regression.fit([High_temp,Low_temp,pre],data.Total)
-intercept =reg.intercept_)
-coeff = reg.coef_
+regression.fit(data[['High Temp (°F)','Low Temp (°F)','Precipitation']], total)
+intercept =regression.intercept_
+coeff = regression.coef_
+print(intercept)
+print(coeff)
 
 
 
