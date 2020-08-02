@@ -88,7 +88,7 @@ def main(x_title,y_title,b_name):
     ind = MSE.index(min(MSE))#fill in
     [lmda_best,MSE_best,model_best] = [lmbda[ind],MSE[ind],MODEL[ind]]
 
-    print('The MSE for model treating ' + b_name + ' as target value is ' + str(MSE_best) + '. The best lambda tested for it is ' + str(lmda_best))
+    print('The MSE for model treating ' + b_name + ' as target variable is ' + str(MSE_best) + '. The best lambda tested for it is ' + str(lmda_best))
     
     
     return MSE_best
