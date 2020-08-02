@@ -6,6 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.datasets import load_iris
 from sklearn import preprocessing
 
+
 def main():
 	data = pd.read_csv("NYC_Bicycle_Counts_2016_Corrected_2.csv",thousands = ',')
 	rider = data['Total']
@@ -23,12 +24,12 @@ def main():
 	# Normalize the data attributes for the dataset.
 	# normalize the data attributes
 	X_train = preprocessing.scale(X_train)
-	print(X_train)
 	X_test = preprocessing.scale(X_test)
 	X_test = X_test.tolist()
+
+	#use logistic regression
 	logR = LogisticRegression()
 	logR.fit(X_train,y_train)
-	X_test
 	print(logR.predict_proba(X_test))
 	
 	y_predicted = logR.predict(X_test)
@@ -37,9 +38,12 @@ def main():
 		print("Test " + str(i))
 		print("Prdiction by model: " +str(y_predicted[i]))
 		print("Actual result: " +str(y_test[i]))
+	
 	score = logR.score(X_test,y_test)
-	print(score)
-
+	print(logR.coef_)
+	print(logR.intercept_)
+	print('Score for the model: ' +str(score))
+	
 
 if __name__ == '__main__':
 	main()
