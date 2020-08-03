@@ -18,16 +18,17 @@ def main():
 	coeff = regression.coef_
 	print(intercept)
 	print(coeff)
-
+	X = sm.add_constant(data[['High Temp (°F)','Low Temp (°F)','Precipitation']])
+	model = sm.OLS(total,X).fit()
+	print(model.summary())
 
 	## so we try regression on normalized data
 	X_normal= preprocessing.scale(data[['High Temp (°F)','Low Temp (°F)' ,'Precipitation']])
-	Y_normal= preprocessing.scale(data['Total'])
-	regression.fit(X_normal, Y_normal)
+	regression.fit(X_normal, total)
 	print(regression.intercept_)
 	print(regression.coef_)
 	X_normal_1 = sm.add_constant(X_normal)
-	model = sm.OLS(Y_normal,X_normal_1).fit()
+	model = sm.OLS(total,X_normal_1).fit()
 	print(model.summary())
 	
 

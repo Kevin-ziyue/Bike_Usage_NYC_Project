@@ -20,7 +20,7 @@ def main():
 	
 
 	X_train, X_test, y_train, y_test = train_test_split(data[['Total']],pre,train_size=0.92,random_state= 5)
-	
+	print(X_test)
 	# Normalize the data attributes for the dataset.
 	# normalize the data attributes
 	X_train = preprocessing.scale(X_train)
@@ -35,7 +35,7 @@ def main():
 	y_predicted = logR.predict(X_test)
 	y_predicted = y_predicted.tolist()
 	for i in range(len(y_predicted)):
-		print("Test " + str(i))
+		print("Test " + str(i+1))
 		print("Prdiction by model: " +str(y_predicted[i]))
 		print("Actual result: " +str(y_test[i]))
 	
